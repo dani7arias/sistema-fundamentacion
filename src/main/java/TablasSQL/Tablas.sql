@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS Alternativas;
 
 DROP TABLE IF EXISTS ObjetivosDeProyectos;
 
-DROP TABLE IF EXISTS ProyectosDelUsuarios;
+DROP TABLE IF EXISTS ProyectosDeUsuarios;
 
 DROP TABLE IF EXISTS Proyectos;
 
@@ -19,20 +19,20 @@ DROP TABLE IF EXISTS Objetivos;
 
 DROP TABLE IF EXISTS Usuarios;
 
-
-
 CREATE TABLE Usuarios (
-    idUsuario INT PRIMARY KEY,
-    nombres VARCHAR(150),
-    telefono INT
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(150) NOT NULL,
+    telefono INT NOT NULL,
+    PRIMARY KEY(id)
 );
 
 CREATE TABLE Proyectos (
-    idProyecto INT PRIMARY KEY,
-    nombreProyecto VARCHAR(150),
-    descripcionProyecto VARCHAR(400),
-    Usuarios_idUsuarios INT,
-    FOREIGN KEY (Usuarios_idUsuarios) REFERENCES Usuarios(idUsuario)
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(150) NOT NULL,
+    descripcion VARCHAR(400) NOT NULL,
+    idUsuario INT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY (idUsuario) REFERENCES Usuarios(id)
 );
 
 CREATE TABLE ProyectosDeUsuarios (
