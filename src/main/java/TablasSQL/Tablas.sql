@@ -18,19 +18,19 @@ DROP TABLE IF EXISTS Objetivos;
 
 DROP TABLE IF EXISTS Usuarios;
 
-
-
 CREATE TABLE Usuarios (
-    idUsuario INT PRIMARY KEY,
+    idUsuario INT NOT NULL AUTO_INCREMENT,
     nombres VARCHAR(150),
-    telefono INT
+    telefono INT,
+    PRIMARY KEY(idUsuario)
 );
 
 CREATE TABLE Proyectos (
-    idProyecto INT PRIMARY KEY,
-    nombreProyecto VARCHAR(150),
-    descripcionProyecto VARCHAR(400),
+    idProyecto INT NOT NULL AUTO_INCREMENT,
+    nombreProyecto VARCHAR(150) NOT NULL,
+    descripcionProyecto VARCHAR(400) NOT NULL,
     Usuarios_idUsuarios INT,
+    PRIMARY KEY(idProyecto),
     FOREIGN KEY (Usuarios_idUsuarios) REFERENCES Usuarios(idUsuario)
 );
 
@@ -44,8 +44,9 @@ CREATE TABLE ProyectosDelUsuarios (
 
 
 CREATE TABLE Objetivos (
-    idObjetivos INT PRIMARY KEY,
-    objetivo VARCHAR(400)
+    idObjetivos INT NOT NULL AUTO_INCREMENT,
+    objetivo VARCHAR(400) NOT NULL,
+    PRIMARY KEY(idObjetivos)
 );
 
 CREATE TABLE ObjetivosDeProyectos (
@@ -60,33 +61,36 @@ CREATE TABLE ObjetivosDeProyectos (
 
 
 CREATE TABLE Alternativas (
-    idAlternativa INT PRIMARY KEY,
-    nombreAlternativa VARCHAR(150),
-    descripcionAlternativa VARCHAR(400),
-    prosAlternativa VARCHAR(200),
-    contrasAlternativa VARCHAR(200),
-    costoAlternativa DECIMAL(10, 2),
-    tiempoDeImplementacion INT,
-    Proyectos_idProyecto INT,
-    Proyectos_Usuarios_idUsuarios INT,
+    idAlternativa INT NOT NULL AUTO_INCREMENT,
+    nombreAlternativa VARCHAR(150) NOT NULL,
+    descripcionAlternativa VARCHAR(400) NOT NULL,
+    prosAlternativa VARCHAR(200) NOT NULL,
+    contrasAlternativa VARCHAR(200) NOT NULL,
+    costoAlternativa DECIMAL(10, 2) NOT NULL,
+    tiempoDeImplementacion INT NOT NULL,
+    Proyectos_idProyecto INT NOT NULL,
+    Proyectos_Usuarios_idUsuarios INT NOT NULL,
+    PRIMARY KEY(idAlternativa),
     FOREIGN KEY (Proyectos_idProyecto) REFERENCES Proyectos(idProyecto),
     FOREIGN KEY (Proyectos_Usuarios_idUsuarios) REFERENCES Usuarios(idUsuario)
 );
 
 CREATE TABLE Cambios (
-    idCambios INT PRIMARY KEY,
-    nombreCambio VARCHAR(100),
-    descripcion VARCHAR(400),
+    idCambios INT NOT NULL AUTO_INCREMENT,
+    nombreCambio VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(400) NOT NULL,
     Proyectos_idProyecto INT,
+    PRIMARY KEY(idCambios),
     FOREIGN KEY (Proyectos_idProyecto) REFERENCES Proyectos(idProyecto)
 );
 
 
 CREATE TABLE Justificaciones (
-    idJustificaciones INT PRIMARY KEY,
-    descripcionDeLaJustificacion VARCHAR(400),
+    idJustificaciones INT NOT NULL AUTO_INCREMENT,
+    descripcionDeLaJustificacion VARCHAR(400) NOT NULL,
     Cambios_idCambios INT,
     Cambios_Proyectos_idProyecto INT,
+    PRIMARY KEY(idJustificaciones),
     FOREIGN KEY (Cambios_idCambios) REFERENCES Cambios(idCambios),
     FOREIGN KEY (Cambios_Proyectos_idProyecto) REFERENCES Proyectos(idProyecto)
 );
