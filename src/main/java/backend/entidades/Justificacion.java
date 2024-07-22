@@ -1,20 +1,21 @@
 package backend.entidades;
 
 public class Justificacion {
-    
+
     private Integer id_justificacion;
-    
+
     private String descripcion_de_la_justificacion;
-    
+
     private Integer cambios_idCambios;
-    
+
     private Integer cambios_proyectos_idProyectos;
-    
-    public Justificacion(){
-        
+
+    public Justificacion() {
+
     }
 
-    public Justificacion(Integer id_justificacion, String descripcion_de_la_justificacion, Integer cambios_idCambios, Integer cambios_proyectos_idProyectos) {
+    public Justificacion(Integer id_justificacion, String descripcion_de_la_justificacion, Integer cambios_idCambios,
+            Integer cambios_proyectos_idProyectos) {
         this.id_justificacion = id_justificacion;
         this.descripcion_de_la_justificacion = descripcion_de_la_justificacion;
         this.cambios_idCambios = cambios_idCambios;
@@ -55,8 +56,9 @@ public class Justificacion {
 
     @Override
     public String toString() {
-        return "Justificacion{" + "id_justificacion=" + id_justificacion + ", descripcion_de_la_justificacion=" + descripcion_de_la_justificacion + ", cambios_idCambios=" + cambios_idCambios + ", cambios_proyectos_idProyectos=" + cambios_proyectos_idProyectos + '}';
+        return "Justificacion{" + "id_justificacion=" + id_justificacion + ", descripcion_de_la_justificacion="
+                + descripcion_de_la_justificacion + ", cambios_idCambios=" + cambios_idCambios
+                + ", cambios_proyectos_idProyectos=" + cambios_proyectos_idProyectos + '}';
     }
-    
-    
+
 }

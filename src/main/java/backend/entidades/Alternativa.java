@@ -1,30 +1,32 @@
 package backend.entidades;
 
 public class Alternativa {
-    
+
     private Integer id_alternativa;
-    
+
     private String nombre_alternativa;
-    
-    private String descripcion_alternativa; 
-    
+
+    private String descripcion_alternativa;
+
     private String pros_alternativa;
-    
+
     private String contras_alternativas;
-    
+
     private Double costo_alternativa;
-    
+
     private Integer tiempo_de_implementacion;
-    
+
     private Integer proyectos_idProyecto;
-    
+
     private Integer proyectos_usuarios_idUsuario;
-    
-    public Alternativa(){
-        
+
+    public Alternativa() {
+
     }
 
-    public Alternativa(Integer id_alternativa, String nombre_alternativa, String descripcion_alternativa, String pros_alternativa, String contras_alternativas, Double costo_alternativa, Integer tiempo_de_implementacion, Integer proyectos_idProyecto, Integer proyectos_usuarios_idUsuario) {
+    public Alternativa(Integer id_alternativa, String nombre_alternativa, String descripcion_alternativa,
+            String pros_alternativa, String contras_alternativas, Double costo_alternativa,
+            Integer tiempo_de_implementacion, Integer proyectos_idProyecto, Integer proyectos_usuarios_idUsuario) {
         this.id_alternativa = id_alternativa;
         this.nombre_alternativa = nombre_alternativa;
         this.descripcion_alternativa = descripcion_alternativa;
@@ -35,8 +37,6 @@ public class Alternativa {
         this.proyectos_idProyecto = proyectos_idProyecto;
         this.proyectos_usuarios_idUsuario = proyectos_usuarios_idUsuario;
     }
-    
-    
 
     public Integer getId_alternativa() {
         return id_alternativa;
@@ -112,9 +112,11 @@ public class Alternativa {
 
     @Override
     public String toString() {
-        return "Alternativa{" + "id_alternativa=" + id_alternativa + ", nombre_alternativa=" + nombre_alternativa + ", descripcion_alternativa=" + descripcion_alternativa + ", pros_alternativa=" + pros_alternativa + ", contras_alternativas=" + contras_alternativas + ", costo_alternativa=" + costo_alternativa + ", tiempo_de_implementacion=" + tiempo_de_implementacion + ", proyectos_idProyecto=" + proyectos_idProyecto + ", proyectos_usuarios_idUsuario=" + proyectos_usuarios_idUsuario + '}';
+        return "Alternativa{" + "id_alternativa=" + id_alternativa + ", nombre_alternativa=" + nombre_alternativa
+                + ", descripcion_alternativa=" + descripcion_alternativa + ", pros_alternativa=" + pros_alternativa
+                + ", contras_alternativas=" + contras_alternativas + ", costo_alternativa=" + costo_alternativa
+                + ", tiempo_de_implementacion=" + tiempo_de_implementacion + ", proyectos_idProyecto="
+                + proyectos_idProyecto + ", proyectos_usuarios_idUsuario=" + proyectos_usuarios_idUsuario + '}';
     }
-    
-    
-    
+
 }

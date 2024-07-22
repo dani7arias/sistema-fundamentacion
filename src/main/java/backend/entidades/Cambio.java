@@ -1,17 +1,17 @@
 package backend.entidades;
 
 public class Cambio {
-    
+
     private Integer id_cambios;
-    
+
     private String nombre_cambio;
-    
+
     private String descripcion;
-    
+
     private Integer proyectos_idProyectos;
-    
-    public Cambio(){
-        
+
+    public Cambio() {
+
     }
 
     public Cambio(Integer id_cambios, String nombre_cambio, String descripcion, Integer proyectos_idProyectos) {
@@ -20,7 +20,7 @@ public class Cambio {
         this.descripcion = descripcion;
         this.proyectos_idProyectos = proyectos_idProyectos;
     }
-    
+
     public Integer getId_cambios() {
         return id_cambios;
     }
@@ -55,6 +55,7 @@ public class Cambio {
 
     @Override
     public String toString() {
-        return "Cambio{" + "id_cambios=" + id_cambios + ", nombre_cambio=" + nombre_cambio + ", descripcion=" + descripcion + ", proyectos_idProyectos=" + proyectos_idProyectos + '}';
+        return "Cambio{" + "id_cambios=" + id_cambios + ", nombre_cambio=" + nombre_cambio + ", descripcion="
+                + descripcion + ", proyectos_idProyectos=" + proyectos_idProyectos + '}';
     }
 }

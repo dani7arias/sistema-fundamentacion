@@ -1,21 +1,19 @@
 package backend.entidades;
 
 public class Objetivo {
-    
+
     private Integer idObjetivos;
-    
+
     private String objetivo;
-    
-    public Objetivo(){
-        
+
+    public Objetivo() {
+
     }
 
     public Objetivo(Integer idObjetivos, String objetivo) {
         this.idObjetivos = idObjetivos;
         this.objetivo = objetivo;
     }
-    
-    
 
     public Integer getIdObjetivos() {
         return idObjetivos;
@@ -37,6 +35,5 @@ public class Objetivo {
     public String toString() {
         return "Objetivo{" + "idObjetivos=" + idObjetivos + ", objetivo=" + objetivo + '}';
     }
-    
-    
+
 }

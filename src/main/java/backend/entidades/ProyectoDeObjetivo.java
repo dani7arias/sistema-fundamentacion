@@ -1,24 +1,23 @@
 package backend.entidades;
 
 public class ProyectoDeObjetivo {
-    
+
     private Integer objetivos_idObjetivos;
-    
+
     private Integer proyectos_idProyecto;
-    
+
     private Integer proyectos_usuarios_idUsuario;
-    
-    public ProyectoDeObjetivo(){
-        
+
+    public ProyectoDeObjetivo() {
+
     }
 
-    public ProyectoDeObjetivo(Integer objetivos_idObjetivos, Integer proyectos_idProyecto, Integer proyectos_usuarios_idUsuario) {
+    public ProyectoDeObjetivo(Integer objetivos_idObjetivos, Integer proyectos_idProyecto,
+            Integer proyectos_usuarios_idUsuario) {
         this.objetivos_idObjetivos = objetivos_idObjetivos;
         this.proyectos_idProyecto = proyectos_idProyecto;
         this.proyectos_usuarios_idUsuario = proyectos_usuarios_idUsuario;
     }
-    
-    
 
     public Integer getObjetivos_idObjetivos() {
         return objetivos_idObjetivos;
@@ -46,8 +45,8 @@ public class ProyectoDeObjetivo {
 
     @Override
     public String toString() {
-        return "ProyectoDeObjetivo{" + "objetivos_idObjetivos=" + objetivos_idObjetivos + ", proyectos_idProyecto=" + proyectos_idProyecto + ", proyectos_usuarios_idUsuario=" + proyectos_usuarios_idUsuario + '}';
+        return "ProyectoDeObjetivo{" + "objetivos_idObjetivos=" + objetivos_idObjetivos + ", proyectos_idProyecto="
+                + proyectos_idProyecto + ", proyectos_usuarios_idUsuario=" + proyectos_usuarios_idUsuario + '}';
     }
-    
-    
+
 }
