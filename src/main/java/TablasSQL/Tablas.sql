@@ -19,10 +19,27 @@ DROP TABLE IF EXISTS Objetivos;
 
 DROP TABLE IF EXISTS Usuarios;
 
+SELECT * FROM Usuarios;
+
+SELECT * FROM Proyectos;
+
+SELECT * FROM ProyectosDeUsuarios;
+
+SELECT * FROM Objetivos;
+
+SELECT * FROM ObjetivosDeProyectos;
+
+SELECT * FROM Alternativas;
+
+SELECT * FROM Cambios;
+
+SELECT * FROM Justificaciones;
+
 CREATE TABLE Usuarios (
     id INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(150) NOT NULL,
     telefono INT NOT NULL,
+    password VARCHAR(150) NOT NULL,
     PRIMARY KEY(id)
 );
 
