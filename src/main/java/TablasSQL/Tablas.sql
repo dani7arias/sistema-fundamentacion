@@ -52,14 +52,6 @@ CREATE TABLE Proyectos (
     FOREIGN KEY (idUsuario) REFERENCES Usuarios(id) ON DELETE CASCADE
 );
 
-CREATE TABLE ProyectosDeUsuarios (
-    idProyecto INT NOT NULL,
-    idUsuario INT NOT NULL,
-    PRIMARY KEY (idProyecto, idUsuario),
-    FOREIGN KEY (idProyecto) REFERENCES Proyectos(id),
-    FOREIGN KEY (idUsuario) REFERENCES Usuarios(id)
-);
-
 
 CREATE TABLE Objetivos (
     id INT NOT NULL AUTO_INCREMENT,
@@ -68,16 +60,6 @@ CREATE TABLE Objetivos (
     idProyecto INT NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY (idProyecto) REFERENCES Proyectos(id) ON DELETE CASCADE
-);
-
-CREATE TABLE ObjetivosDeProyectos (
-    Objetivos_idObjetivos INT,
-    Proyectos_idProyecto INT,
-    Proyectos_Usuarios_idUsuarios INT,
-    PRIMARY KEY (Objetivos_idObjetivos, Proyectos_idProyecto, Proyectos_Usuarios_idUsuarios),
-    FOREIGN KEY (Objetivos_idObjetivos) REFERENCES Objetivos(idObjetivos),
-    FOREIGN KEY (Proyectos_idProyecto) REFERENCES Proyectos(idProyecto),
-    FOREIGN KEY (Proyectos_Usuarios_idUsuarios) REFERENCES Usuarios(idUsuario)
 );
 
 
@@ -99,20 +81,10 @@ CREATE TABLE Cambios (
     id INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(400) NOT NULL,
+    justificacion VARCHAR(400) NOT NULL,
     idProyecto INT NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY (idProyecto) REFERENCES Proyectos(id) ON DELETE CASCADE
-);
-
-
-CREATE TABLE Justificaciones (
-    idJustificaciones INT NOT NULL AUTO_INCREMENT,
-    descripcionDeLaJustificacion VARCHAR(400) NOT NULL,
-    Cambios_idCambios INT,
-    Cambios_Proyectos_idProyecto INT,
-    PRIMARY KEY(idJustificaciones),
-    FOREIGN KEY (Cambios_idCambios) REFERENCES Cambios(idCambios),
-    FOREIGN KEY (Cambios_Proyectos_idProyecto) REFERENCES Proyectos(idProyecto)
 );
 
 

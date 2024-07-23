@@ -2,6 +2,7 @@ package backend.servicios;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -32,7 +33,7 @@ public class ProyectoServicio extends ConexionDB implements OperacionesCRUD<Proy
                 entidad.setId(rs.getInt(1));
             }
             return entidad;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al insertar proyecto: " + e.getMessage());
             return null;
         } finally {
@@ -50,7 +51,7 @@ public class ProyectoServicio extends ConexionDB implements OperacionesCRUD<Proy
             ps.setInt(4, entidad.getId());
             ps.executeUpdate();
             return entidad;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar proyecto: " + e.getMessage());
             return null;
         } finally {
@@ -64,7 +65,7 @@ public class ProyectoServicio extends ConexionDB implements OperacionesCRUD<Proy
             ps = super.abrirConexion().prepareStatement(ProyectoSQL.ELIMINAR);
             ps.setInt(1, id);
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al eliminar proyecto: " + e.getMessage());
         } finally {
             super.cerrarConexion();
@@ -82,7 +83,7 @@ public class ProyectoServicio extends ConexionDB implements OperacionesCRUD<Proy
                 proyecto = new Proyecto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
             }
             return proyecto;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al buscar proyecto por id: " + e.getMessage());
             return null;
         } finally {
@@ -101,7 +102,7 @@ public class ProyectoServicio extends ConexionDB implements OperacionesCRUD<Proy
                 proyectos.add(new Proyecto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
             }
             return proyectos;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al obtener todos los proyectos: " + e.getMessage());
             return null;
         } finally {
@@ -119,7 +120,7 @@ public class ProyectoServicio extends ConexionDB implements OperacionesCRUD<Proy
                 proyectos.add(new Proyecto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
             }
             return proyectos;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al obtener proyectos por id de usuario: " + e.getMessage());
             return null;
         } finally {

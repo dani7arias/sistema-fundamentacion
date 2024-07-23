@@ -1,40 +1,45 @@
 package backend.entidades;
 
+import java.util.Objects;
+
 public class Cambio {
 
-    private Integer id_cambios;
+    private Integer id;
 
-    private String nombre_cambio;
+    private String nombre;
 
     private String descripcion;
 
-    private Integer proyectos_idProyectos;
+    private String justificacion;
+
+    private Integer idProyecto;
 
     public Cambio() {
 
     }
 
-    public Cambio(Integer id_cambios, String nombre_cambio, String descripcion, Integer proyectos_idProyectos) {
-        this.id_cambios = id_cambios;
-        this.nombre_cambio = nombre_cambio;
+    public Cambio(Integer id, String nombre, String descripcion, String justificacion, Integer idProyecto) {
+        this.id = id;
+        this.nombre = nombre;
         this.descripcion = descripcion;
-        this.proyectos_idProyectos = proyectos_idProyectos;
+        this.justificacion = justificacion;
+        this.idProyecto = idProyecto;
     }
 
-    public Integer getId_cambios() {
-        return id_cambios;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId_cambios(Integer id_cambios) {
-        this.id_cambios = id_cambios;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getNombre_cambio() {
-        return nombre_cambio;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombre_cambio(String nombre_cambio) {
-        this.nombre_cambio = nombre_cambio;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {
@@ -45,17 +50,63 @@ public class Cambio {
         this.descripcion = descripcion;
     }
 
-    public Integer getProyectos_idProyectos() {
-        return proyectos_idProyectos;
+    public String getJustificacion() {
+        return justificacion;
     }
 
-    public void setProyectos_idProyectos(Integer proyectos_idProyectos) {
-        this.proyectos_idProyectos = proyectos_idProyectos;
+    public void setJustificacion(String justificacion) {
+        this.justificacion = justificacion;
+    }
+
+    public Integer getIdProyecto() {
+        return idProyecto;
+    }
+
+    public void setIdProyecto(Integer idProyecto) {
+        this.idProyecto = idProyecto;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.id);
+        hash = 61 * hash + Objects.hashCode(this.nombre);
+        hash = 61 * hash + Objects.hashCode(this.descripcion);
+        hash = 61 * hash + Objects.hashCode(this.justificacion);
+        hash = 61 * hash + Objects.hashCode(this.idProyecto);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cambio other = (Cambio) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripcion, other.descripcion)) {
+            return false;
+        }
+        if (!Objects.equals(this.justificacion, other.justificacion)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return Objects.equals(this.idProyecto, other.idProyecto);
     }
 
     @Override
     public String toString() {
-        return "Cambio{" + "id_cambios=" + id_cambios + ", nombre_cambio=" + nombre_cambio + ", descripcion="
-                + descripcion + ", proyectos_idProyectos=" + proyectos_idProyectos + '}';
+        return "Cambio{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", justificacion=" + justificacion + ", idProyecto=" + idProyecto + '}';
     }
+
 }
