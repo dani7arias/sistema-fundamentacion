@@ -27,6 +27,7 @@ public class UsuarioServicio extends ConexionDB implements OperacionesCRUD<Usuar
             ps.setString(1, entidad.getNombre());
             ps.setInt(2, entidad.getTelefono());
             ps.setString(3, entidad.getPassword());
+            ps.setBoolean(4, entidad.getAcceso());
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -48,7 +49,8 @@ public class UsuarioServicio extends ConexionDB implements OperacionesCRUD<Usuar
             ps.setString(1, entidad.getNombre());
             ps.setInt(2, entidad.getTelefono());
             ps.setString(3, entidad.getPassword());
-            ps.setInt(4, entidad.getId());
+            ps.setBoolean(4, entidad.getAcceso());
+            ps.setInt(5, entidad.getId());
             ps.executeUpdate();
             return entidad;
         } catch (SQLException e) {
@@ -61,7 +63,6 @@ public class UsuarioServicio extends ConexionDB implements OperacionesCRUD<Usuar
 
     @Override
     public void eliminar(Integer id) {
-
         try {
             ps = super.abrirConexion().prepareStatement(UsuarioSQL.ELIMINAR);
             ps.setInt(1, id);
@@ -86,10 +87,11 @@ public class UsuarioServicio extends ConexionDB implements OperacionesCRUD<Usuar
                 usuario.setNombre(rs.getString(2));
                 usuario.setTelefono(rs.getInt(3));
                 usuario.setPassword(rs.getString(4));
+                usuario.setAcceso(rs.getBoolean(5));
             }
             return usuario;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar usuario por ID: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al buscar usuario por id: " + e.getMessage());
             return null;
         } finally {
             super.cerrarConexion();
@@ -102,12 +104,14 @@ public class UsuarioServicio extends ConexionDB implements OperacionesCRUD<Usuar
             ps = super.abrirConexion().prepareStatement(UsuarioSQL.OBTENER_TODOS);
             rs = ps.executeQuery();
             ArrayList<Usuario> usuarios = new ArrayList<>();
+            Usuario usuario;
             while (rs.next()) {
-                Usuario usuario = new Usuario();
+                usuario = new Usuario();
                 usuario.setId(rs.getInt(1));
                 usuario.setNombre(rs.getString(2));
                 usuario.setTelefono(rs.getInt(3));
                 usuario.setPassword(rs.getString(4));
+                usuario.setAcceso(rs.getBoolean(5));
                 usuarios.add(usuario);
             }
             return usuarios;
@@ -146,6 +150,7 @@ public class UsuarioServicio extends ConexionDB implements OperacionesCRUD<Usuar
                 usuario.setNombre(rs.getString(2));
                 usuario.setTelefono(rs.getInt(3));
                 usuario.setPassword(rs.getString(4));
+                usuario.setAcceso(rs.getBoolean(5));
             }
             return usuario;
         } catch (SQLException e) {

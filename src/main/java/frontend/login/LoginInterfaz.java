@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 import backend.controladores.UsuarioControlador;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
-import frontend.administrador.AdminUsuarioInterfaz;
+import frontend.administrador.AdminProyectoInterfaz;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -13,7 +13,7 @@ import net.miginfocom.swing.MigLayout;
  */
 public class LoginInterfaz extends javax.swing.JFrame {
     private UsuarioControlador usuarioControlador;
-    private AdminUsuarioInterfaz proyectoAdmin;
+    private AdminProyectoInterfaz proyectoAdmin;
 
     /**
      * Creates new form Main
@@ -168,7 +168,7 @@ public class LoginInterfaz extends javax.swing.JFrame {
         }
 
         if (usuarioControlador.validarUsuario(usuario, password)) {
-            proyectoAdmin = new AdminUsuarioInterfaz(usuarioControlador.buscarPorNombre(usuario));
+            proyectoAdmin = new AdminProyectoInterfaz(usuarioControlador.buscarPorNombre(usuario));
             proyectoAdmin.setVisible(true);
             this.dispose();
         } else {

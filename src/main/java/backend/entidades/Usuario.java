@@ -12,14 +12,17 @@ public class Usuario {
 
     private String password;
 
+    private Boolean acceso;
+
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nombre, Integer telefono, String password) {
+    public Usuario(Integer id, String nombre, Integer telefono, String password, Boolean acceso) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
         this.password = password;
+        this.acceso = acceso;
     }
 
     public Integer getId() {
@@ -54,18 +57,22 @@ public class Usuario {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", telefono=" + telefono + ", password=" + password + '}';
+    public Boolean getAcceso() {
+        return acceso;
+    }
+
+    public void setAcceso(Boolean acceso) {
+        this.acceso = acceso;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + Objects.hashCode(this.nombre);
-        hash = 71 * hash + Objects.hashCode(this.telefono);
-        hash = 71 * hash + Objects.hashCode(this.password);
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.nombre);
+        hash = 37 * hash + Objects.hashCode(this.telefono);
+        hash = 37 * hash + Objects.hashCode(this.password);
+        hash = 37 * hash + Objects.hashCode(this.acceso);
         return hash;
     }
 
@@ -90,7 +97,15 @@ public class Usuario {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        return Objects.equals(this.telefono, other.telefono);
+        if (!Objects.equals(this.telefono, other.telefono)) {
+            return false;
+        }
+        return Objects.equals(this.acceso, other.acceso);
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", telefono=" + telefono + ", password=" + password + ", acceso=" + acceso + '}';
     }
 
 }

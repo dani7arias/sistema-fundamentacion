@@ -3,19 +3,13 @@ CREATE DATABASE sistemaDeFundamentacion;
 
 USE sistemaDeFundamentacion;
 
-DROP TABLE IF EXISTS Justificaciones;
-
 DROP TABLE IF EXISTS Cambios;
 
 DROP TABLE IF EXISTS Alternativas;
 
-DROP TABLE IF EXISTS ObjetivosDeProyectos;
-
-DROP TABLE IF EXISTS ProyectosDeUsuarios;
+DROP TABLE IF EXISTS Objetivos;
 
 DROP TABLE IF EXISTS Proyectos;
-
-DROP TABLE IF EXISTS Objetivos;
 
 DROP TABLE IF EXISTS Usuarios;
 
@@ -23,23 +17,18 @@ SELECT * FROM Usuarios;
 
 SELECT * FROM Proyectos;
 
-SELECT * FROM ProyectosDeUsuarios;
-
 SELECT * FROM Objetivos;
-
-SELECT * FROM ObjetivosDeProyectos;
 
 SELECT * FROM Alternativas;
 
 SELECT * FROM Cambios;
-
-SELECT * FROM Justificaciones;
 
 CREATE TABLE Usuarios (
     id INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(150) NOT NULL,
     telefono INT NOT NULL,
     password VARCHAR(150) NOT NULL,
+    acceso BOOLEAN NOT NULL,
     PRIMARY KEY(id)
 );
 

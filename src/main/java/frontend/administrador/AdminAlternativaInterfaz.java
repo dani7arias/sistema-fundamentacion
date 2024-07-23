@@ -41,6 +41,11 @@ public class AdminAlternativaInterfaz extends javax.swing.JFrame {
         initTabla(tabla, 3);
         cargarTabla();
         this.usuario = usuario;
+        if (usuario.getAcceso() == false) {
+            btnCrear.setVisible(false);
+            btnModificar.setVisible(false);
+            btnEliminar.setVisible(false);
+        }
     }
 
     private void init() {

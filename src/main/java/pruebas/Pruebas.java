@@ -8,7 +8,7 @@ public class Pruebas {
         UsuarioControlador usuarioControlador = new UsuarioControlador();
 
         // Crear un usuario de prueba
-        Usuario usuarioPrueba = new Usuario(null, "Usuario", 123456, "123");
+        Usuario usuarioPrueba = new Usuario(null, "Usuario", 123456, "123", true);
         usuarioControlador.insertar(usuarioPrueba);
     }
 }

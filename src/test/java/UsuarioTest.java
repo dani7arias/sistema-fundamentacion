@@ -49,7 +49,7 @@ public class UsuarioTest {
     @Test
     public void testInsertar() {
         // Crear un usuario de prueba
-        Usuario usuarioPrueba = new Usuario(null, "UsuarioPrueba", 123456, "password");
+        Usuario usuarioPrueba = new Usuario(null, "UsuarioPrueba", 123456, "password", true);
 
         // Insertar el usuario en la base de datos
         Usuario usuarioInsertado = usuarioControlador.insertar(usuarioPrueba);
@@ -75,7 +75,7 @@ public class UsuarioTest {
     @Test
     public void testActualizar() {
         // Insertar un usuario de prueba para asegurar que exista en la base de datos
-        Usuario usuarioPrueba = new Usuario(null, "UsuarioPrueba", 123456, "password");
+        Usuario usuarioPrueba = new Usuario(null, "UsuarioPrueba", 123456, "password", true);
         usuarioPrueba = usuarioControlador.insertar(usuarioPrueba);
 
         // Cambiar algún dato del usuario
@@ -105,7 +105,7 @@ public class UsuarioTest {
     @Test
     public void testBuscarPorId() {
         // Insertar un usuario de prueba para asegurar que exista en la base de datos
-        Usuario usuarioPrueba = new Usuario(1, "UsuarioPrueba", 123456, "password");
+        Usuario usuarioPrueba = new Usuario(null, "UsuarioPrueba", 123456, "password", true);
         usuarioPrueba = usuarioControlador.insertar(usuarioPrueba);
 
         // Buscar el usuario por ID
@@ -133,7 +133,7 @@ public class UsuarioTest {
     @Test
     public void testMostrarTodos() {
         // Insertar un usuario de prueba para asegurar que la lista no esté vacía
-        Usuario usuarioPrueba = new Usuario(null, "Prueba", 123456, "password");
+        Usuario usuarioPrueba = new Usuario(null, "UsuarioPrueba", 123456, "password", true);
         usuarioPrueba = usuarioControlador.insertar(usuarioPrueba);
 
         // Llamar al método mostrarTodos
@@ -151,7 +151,7 @@ public class UsuarioTest {
     @Test
     public void testEliminar() {
         // Insertar un usuario de prueba
-        Usuario usuarioPrueba = new Usuario(null, "Daniel", 123456, "password");
+        Usuario usuarioPrueba = new Usuario(null, "UsuarioPrueba", 123456, "password", true);
         usuarioPrueba = usuarioControlador.insertar(usuarioPrueba);
 
         // Asumiendo que el método insertar devuelve el usuario con un ID asignado
@@ -170,7 +170,7 @@ public class UsuarioTest {
     @Test
     public void testValidarUsuario() {
         // Insertar un usuario de prueba
-        Usuario usuarioPrueba = new Usuario(null, "Daniel", 123456, "password");
+        Usuario usuarioPrueba = new Usuario(null, "UsuarioPrueba", 123456, "password", true);
         usuarioPrueba = usuarioControlador.insertar(usuarioPrueba);
 
         // Validar el usuario de prueba

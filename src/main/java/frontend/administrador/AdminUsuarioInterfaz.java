@@ -1,78 +1,85 @@
 package frontend.administrador;
 
-import frontend.proyecto.ProyectoDetallesInterfaz;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
-
-import backend.controladores.ProyectoControlador;
-import backend.entidades.Proyecto;
+import backend.controladores.UsuarioControlador;
 import backend.entidades.Usuario;
-import frontend.proyecto.ProyectoInterfaz;
+import frontend.usuario.UsuarioInterfaz;
 
 /**
  *
  * @author Daniel Arias
  */
 public class AdminUsuarioInterfaz extends javax.swing.JFrame {
+
     private Usuario usuario;
-    private ProyectoInterfaz proyectoInterfaz;
-    private ProyectoControlador proyectoControlador;
-    private ArrayList<Proyecto> proyectos;
-    private ProyectoDetallesInterfaz proyectoDetallesInterfaz;
+    private UsuarioInterfaz usuarioInterfaz;
+    private UsuarioControlador usuarioControlador;
+    private ArrayList<Usuario> usuarios;
 
     /**
-     * Creates new form ProyectoAdmin
+     * Creates new form AdminCambioInterfaz
      */
-    public AdminUsuarioInterfaz(Usuario usuario) {
+    public AdminUsuarioInterfaz() {
         initComponents();
-        init(usuario);
-        initControladores();
-        initTabla();
-        cargarDatosTabla();
+        init();
     }
 
-    private void initTabla() {
+    public AdminUsuarioInterfaz(Usuario usuario) {
+        initComponents();
+        init();
+        cargarDatos(usuario);
+        initControladores();
+        initTabla(tabla, 3);
+        cargarTabla();
+    }
+
+    private void init() {
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+    }
+
+    private void cargarDatos(Usuario usuario) {
+        this.usuario = usuario;
+        setTitle("Sistema de fundamentacion");
+    }
+
+    private void initControladores() {
+        usuarioControlador = new UsuarioControlador();
+    }
+
+    private void cargarTabla() {
+        usuarios = usuarioControlador.mostrarTodos();
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        modelo.setRowCount(0);
+        for (Usuario u : usuarios) {
+            Object[] fila = new Object[3];
+            fila[0] = u.getNombre();
+            fila[1] = u.getTelefono();
+            fila[2] = u.getAcceso() ? "Administrador" : "Usuario";
+            modelo.addRow(fila);
+        }
+        tabla.setModel(modelo);
+    }
+
+    private void initTabla(JTable tabla, int columnas) {
         tabla.setRowHeight(25);
 
         DefaultTableCellRenderer centrar = new DefaultTableCellRenderer();
         centrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        tabla.getColumnModel().getColumn(0).setCellRenderer(centrar);
-        tabla.getColumnModel().getColumn(1).setCellRenderer(centrar);
+        for (int i = 0; i < columnas; i++) {
+            tabla.getColumnModel().getColumn(i).setCellRenderer(centrar);
+        }
 
         tabla.getTableHeader().setFont(new java.awt.Font("Segoe UI", 1, 14)); // Cambiar letra del Header
         ((DefaultTableCellRenderer) tabla.getTableHeader().getDefaultRenderer())
                 .setHorizontalAlignment(javax.swing.SwingConstants.CENTER); // Centrar Header
-
-    }
-
-    private void initControladores() {
-        proyectoControlador = new ProyectoControlador();
-    }
-
-    private void init(Usuario usuario) {
-        proyectos = new ArrayList<>();
-        this.setTitle("Sistema de fundamentacion");
-        this.lblTitulo.setText("Proyectos de: " + usuario.getNombre());
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.usuario = usuario;
-    }
-
-    public void cargarDatosTabla() {
-        proyectos = proyectoControlador.mostrarPorUsuario(usuario.getId());
-        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
-        model.setRowCount(0);
-        for (Proyecto proyecto : proyectos) {
-            model.addRow(new Object[] { proyecto.getNombre(), proyecto.getDescripcion() });
-        }
-
-        tabla.setModel(model);
     }
 
     /**
@@ -85,36 +92,37 @@ public class AdminUsuarioInterfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblTitulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        btnAbrir = new javax.swing.JButton();
         btnCrear = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnAbrir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Proyectos de: ");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Usuarios");
 
-        tabla.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][] {
 
                 },
                 new String[] {
-                        "NOMBRE", "DESCRIPCION"
+                        "NOMBRE", "TELEFONO", "ACCESO"
                 }) {
             boolean[] canEdit = new boolean[] {
-                    false, false
+                    false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -122,6 +130,14 @@ public class AdminUsuarioInterfaz extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tabla);
+
+        btnAbrir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAbrir.setText("Abrir");
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirActionPerformed(evt);
+            }
+        });
 
         btnCrear.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCrear.setText("Crear");
@@ -147,14 +163,6 @@ public class AdminUsuarioInterfaz extends javax.swing.JFrame {
             }
         });
 
-        btnAbrir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAbrir.setText("Abrir");
-        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbrirActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,12 +170,11 @@ public class AdminUsuarioInterfaz extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, 1035, Short.MAX_VALUE)
-                                        .addComponent(lblTitulo, javax.swing.GroupLayout.Alignment.TRAILING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 826,
+                                                Short.MAX_VALUE)
+                                        .addComponent(jScrollPane1)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
+                                                .createSequentialGroup()
                                                 .addComponent(btnCrear)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(btnModificar)
@@ -181,16 +188,16 @@ public class AdminUsuarioInterfaz extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(lblTitulo)
+                                .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnAbrir)
                                         .addComponent(btnCrear)
                                         .addComponent(btnModificar)
-                                        .addComponent(btnEliminar)
-                                        .addComponent(btnAbrir))
+                                        .addComponent(btnEliminar))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         pack();
@@ -199,65 +206,95 @@ public class AdminUsuarioInterfaz extends javax.swing.JFrame {
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAbrirActionPerformed
         int fila = tabla.getSelectedRow();
         if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un proyecto", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione un usuario", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Proyecto proyecto = proyectos.get(fila);
-        proyectoDetallesInterfaz = new ProyectoDetallesInterfaz(proyecto, usuario);
-        this.dispose();
-        proyectoDetallesInterfaz.setVisible(true);
 
+        Usuario u = usuarios.get(fila);
+        usuarioInterfaz = new UsuarioInterfaz(this, true, u, true);
+        usuarioInterfaz.setVisible(true);
     }// GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEliminarActionPerformed
         int fila = tabla.getSelectedRow();
         if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un proyecto", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione un usuario", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Proyecto proyecto = proyectos.get(fila);
-
-        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar el proyecto?", "Confirmar",
-                JOptionPane.YES_NO_OPTION);
-
-        if (confirmacion == JOptionPane.YES_OPTION) {
-            proyectoControlador.eliminar(proyecto.getId());
-            cargarDatosTabla();
+        Usuario cambio = usuarios.get(fila);
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar el usuario?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (opcion == JOptionPane.YES_OPTION) {
+            usuarioControlador.eliminar(cambio.getId());
+            cargarTabla();
         }
     }// GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnModificarActionPerformed
-        int fila = tabla.getSelectedRow();
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un proyecto", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        Proyecto proyecto = proyectos.get(fila);
-        proyectoInterfaz = new ProyectoInterfaz(this, true, usuario, proyecto);
-        proyectoInterfaz.setVisible(true);
-        cargarDatosTabla();
-    }// GEN-LAST:event_btnModificarActionPerformed
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowClosing
+        AdminProyectoInterfaz api = new AdminProyectoInterfaz(usuario);
+        api.setVisible(true);
+    }// GEN-LAST:event_formWindowClosing
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCrearActionPerformed
-        proyectoInterfaz = new ProyectoInterfaz(this, true, usuario);
-        proyectoInterfaz.setVisible(true);
-        cargarDatosTabla();
+        usuarioInterfaz = new UsuarioInterfaz(this, true, null, false);
+        usuarioInterfaz.setVisible(true);
+        cargarTabla();
     }// GEN-LAST:event_btnCrearActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
+        int fila = tabla.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un usuario", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Usuario u = usuarios.get(fila);
+        usuarioInterfaz = new UsuarioInterfaz(this, true, u, false);
+        usuarioInterfaz.setVisible(true);
+        cargarTabla();
+    }// GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+         * look and feel.
+         * For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
         try {
-            FlatMacLightLaf.setup();
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AdminUsuarioInterfaz.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AdminUsuarioInterfaz.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AdminUsuarioInterfaz.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AdminUsuarioInterfaz.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         }
+        // </editor-fold>
+        // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminUsuarioInterfaz(new Usuario(1, "daniel", 123456, "123")).setVisible(true);
+                new AdminUsuarioInterfaz().setVisible(true);
             }
         });
     }
@@ -267,8 +304,8 @@ public class AdminUsuarioInterfaz extends javax.swing.JFrame {
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

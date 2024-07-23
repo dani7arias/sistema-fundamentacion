@@ -17,7 +17,7 @@ import backend.entidades.Usuario;
 import frontend.administrador.AdminAlternativaInterfaz;
 import frontend.administrador.AdminCambioInterfaz;
 import frontend.administrador.AdminObjetivos;
-import frontend.administrador.AdminUsuarioInterfaz;
+import frontend.administrador.AdminProyectoInterfaz;
 
 /**
  *
@@ -56,6 +56,10 @@ public class ProyectoDetallesInterfaz extends javax.swing.JFrame {
         cargarTablaAlternativas();
         cargarTablaCambios();
         this.usuario = usuario;
+        if(usuario.getAcceso() == false){
+            btnCambios.setEnabled(false);
+            btnObjetivos.setEnabled(false);
+        }
     }
 
     private void init() {
@@ -344,7 +348,7 @@ public class ProyectoDetallesInterfaz extends javax.swing.JFrame {
     }// GEN-LAST:event_btnCambiosActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowClosing
-        AdminUsuarioInterfaz adminUsuarioInterfaz = new AdminUsuarioInterfaz(usuario);
+        AdminProyectoInterfaz adminUsuarioInterfaz = new AdminProyectoInterfaz(usuario);
         adminUsuarioInterfaz.setVisible(true);
     }// GEN-LAST:event_formWindowClosing
 
