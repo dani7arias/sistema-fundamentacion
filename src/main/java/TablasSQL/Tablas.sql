@@ -49,7 +49,7 @@ CREATE TABLE Proyectos (
     descripcion VARCHAR(400) NOT NULL,
     idUsuario INT NOT NULL,
     PRIMARY KEY(id),
-    FOREIGN KEY (idUsuario) REFERENCES Usuarios(id)
+    FOREIGN KEY (idUsuario) REFERENCES Usuarios(id) ON DELETE CASCADE
 );
 
 CREATE TABLE ProyectosDeUsuarios (
@@ -62,9 +62,12 @@ CREATE TABLE ProyectosDeUsuarios (
 
 
 CREATE TABLE Objetivos (
-    idObjetivos INT NOT NULL AUTO_INCREMENT,
-    objetivo VARCHAR(400) NOT NULL,
-    PRIMARY KEY(idObjetivos)
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(150) NOT NULL,
+    descripcion VARCHAR(400) NOT NULL,
+    idProyecto INT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY (idProyecto) REFERENCES Proyectos(id) ON DELETE CASCADE
 );
 
 CREATE TABLE ObjetivosDeProyectos (
@@ -79,27 +82,26 @@ CREATE TABLE ObjetivosDeProyectos (
 
 
 CREATE TABLE Alternativas (
-    idAlternativa INT NOT NULL AUTO_INCREMENT,
-    nombreAlternativa VARCHAR(150) NOT NULL,
-    descripcionAlternativa VARCHAR(400) NOT NULL,
-    prosAlternativa VARCHAR(200) NOT NULL,
-    contrasAlternativa VARCHAR(200) NOT NULL,
-    costoAlternativa DECIMAL(10, 2) NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(150) NOT NULL,
+    descripcion VARCHAR(400) NOT NULL,
+    pros VARCHAR(200) NOT NULL,
+    contras VARCHAR(200) NOT NULL,
+    costo DECIMAL(10, 2) NOT NULL,
     tiempoDeImplementacion INT NOT NULL,
-    Proyectos_idProyecto INT NOT NULL,
-    Proyectos_Usuarios_idUsuarios INT NOT NULL,
-    PRIMARY KEY(idAlternativa),
-    FOREIGN KEY (Proyectos_idProyecto) REFERENCES Proyectos(idProyecto),
-    FOREIGN KEY (Proyectos_Usuarios_idUsuarios) REFERENCES Usuarios(idUsuario)
+    categoria VARCHAR(150) NOT NULL,
+    idProyecto INT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY (idProyecto) REFERENCES Proyectos(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Cambios (
-    idCambios INT NOT NULL AUTO_INCREMENT,
-    nombreCambio VARCHAR(100) NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(400) NOT NULL,
-    Proyectos_idProyecto INT,
-    PRIMARY KEY(idCambios),
-    FOREIGN KEY (Proyectos_idProyecto) REFERENCES Proyectos(idProyecto)
+    idProyecto INT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY (idProyecto) REFERENCES Proyectos(id) ON DELETE CASCADE
 );
 
 

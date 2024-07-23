@@ -8,6 +8,7 @@ import backend.servicios.ProyectoServicio;
 public class ProyectoControlador extends ProyectoServicio {
 
     public ProyectoControlador() {
+        super();
     }
 
     public Proyecto insertar(Proyecto proyecto) {

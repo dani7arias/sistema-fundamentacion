@@ -8,6 +8,7 @@ import backend.servicios.UsuarioServicio;
 public class UsuarioControlador extends UsuarioServicio {
 
     public UsuarioControlador() {
+        super();
     }
 
     public Usuario insertar(Usuario usuario) {

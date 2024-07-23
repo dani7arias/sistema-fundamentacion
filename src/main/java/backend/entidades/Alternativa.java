@@ -1,122 +1,172 @@
 package backend.entidades;
 
+import java.util.Objects;
+
 public class Alternativa {
 
-    private Integer id_alternativa;
+    private Integer id;
 
-    private String nombre_alternativa;
+    private String nombre;
 
-    private String descripcion_alternativa;
+    private String descripcion;
 
-    private String pros_alternativa;
+    private String pros;
 
-    private String contras_alternativas;
+    private String contras;
 
-    private Double costo_alternativa;
+    private Double costo;
 
-    private Integer tiempo_de_implementacion;
+    private Integer tiempoDeImplementacion;
 
-    private Integer proyectos_idProyecto;
+    private String categoria;
 
-    private Integer proyectos_usuarios_idUsuario;
+    private Integer idProyecto;
 
     public Alternativa() {
 
     }
 
-    public Alternativa(Integer id_alternativa, String nombre_alternativa, String descripcion_alternativa,
-            String pros_alternativa, String contras_alternativas, Double costo_alternativa,
-            Integer tiempo_de_implementacion, Integer proyectos_idProyecto, Integer proyectos_usuarios_idUsuario) {
-        this.id_alternativa = id_alternativa;
-        this.nombre_alternativa = nombre_alternativa;
-        this.descripcion_alternativa = descripcion_alternativa;
-        this.pros_alternativa = pros_alternativa;
-        this.contras_alternativas = contras_alternativas;
-        this.costo_alternativa = costo_alternativa;
-        this.tiempo_de_implementacion = tiempo_de_implementacion;
-        this.proyectos_idProyecto = proyectos_idProyecto;
-        this.proyectos_usuarios_idUsuario = proyectos_usuarios_idUsuario;
+    public Alternativa(Integer id, String nombre, String descripcion, String pros, String contras, Double costo, Integer tiempoDeImplementacion, String categoria, Integer idProyecto) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.pros = pros;
+        this.contras = contras;
+        this.costo = costo;
+        this.tiempoDeImplementacion = tiempoDeImplementacion;
+        this.categoria = categoria;
+        this.idProyecto = idProyecto;
     }
 
-    public Integer getId_alternativa() {
-        return id_alternativa;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId_alternativa(Integer id_alternativa) {
-        this.id_alternativa = id_alternativa;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getNombre_alternativa() {
-        return nombre_alternativa;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombre_alternativa(String nombre_alternativa) {
-        this.nombre_alternativa = nombre_alternativa;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getDescripcion_alternativa() {
-        return descripcion_alternativa;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescripcion_alternativa(String descripcion_alternativa) {
-        this.descripcion_alternativa = descripcion_alternativa;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getPros_alternativa() {
-        return pros_alternativa;
+    public String getPros() {
+        return pros;
     }
 
-    public void setPros_alternativa(String pros_alternativa) {
-        this.pros_alternativa = pros_alternativa;
+    public void setPros(String pros) {
+        this.pros = pros;
     }
 
-    public String getContras_alternativas() {
-        return contras_alternativas;
+    public String getContras() {
+        return contras;
     }
 
-    public void setContras_alternativas(String contras_alternativas) {
-        this.contras_alternativas = contras_alternativas;
+    public void setContras(String contras) {
+        this.contras = contras;
     }
 
-    public Double getCosto_alternativa() {
-        return costo_alternativa;
+    public Double getCosto() {
+        return costo;
     }
 
-    public void setCosto_alternativa(Double costo_alternativa) {
-        this.costo_alternativa = costo_alternativa;
+    public void setCosto(Double costo) {
+        this.costo = costo;
     }
 
-    public Integer getTiempo_de_implementacion() {
-        return tiempo_de_implementacion;
+    public Integer getTiempoDeImplementacion() {
+        return tiempoDeImplementacion;
     }
 
-    public void setTiempo_de_implementacion(Integer tiempo_de_implementacion) {
-        this.tiempo_de_implementacion = tiempo_de_implementacion;
+    public void setTiempoDeImplementacion(Integer tiempoDeImplementacion) {
+        this.tiempoDeImplementacion = tiempoDeImplementacion;
     }
 
-    public Integer getProyectos_idProyecto() {
-        return proyectos_idProyecto;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setProyectos_idProyecto(Integer proyectos_idProyecto) {
-        this.proyectos_idProyecto = proyectos_idProyecto;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
-    public Integer getProyectos_usuarios_idUsuario() {
-        return proyectos_usuarios_idUsuario;
+    public Integer getIdProyecto() {
+        return idProyecto;
     }
 
-    public void setProyectos_usuarios_idUsuario(Integer proyectos_usuarios_idUsuario) {
-        this.proyectos_usuarios_idUsuario = proyectos_usuarios_idUsuario;
+    public void setIdProyecto(Integer idProyecto) {
+        this.idProyecto = idProyecto;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + Objects.hashCode(this.nombre);
+        hash = 23 * hash + Objects.hashCode(this.descripcion);
+        hash = 23 * hash + Objects.hashCode(this.pros);
+        hash = 23 * hash + Objects.hashCode(this.contras);
+        hash = 23 * hash + Objects.hashCode(this.costo);
+        hash = 23 * hash + Objects.hashCode(this.tiempoDeImplementacion);
+        hash = 23 * hash + Objects.hashCode(this.categoria);
+        hash = 23 * hash + Objects.hashCode(this.idProyecto);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Alternativa other = (Alternativa) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripcion, other.descripcion)) {
+            return false;
+        }
+        if (!Objects.equals(this.pros, other.pros)) {
+            return false;
+        }
+        if (!Objects.equals(this.contras, other.contras)) {
+            return false;
+        }
+        if (!Objects.equals(this.categoria, other.categoria)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.costo, other.costo)) {
+            return false;
+        }
+        if (!Objects.equals(this.tiempoDeImplementacion, other.tiempoDeImplementacion)) {
+            return false;
+        }
+        return Objects.equals(this.idProyecto, other.idProyecto);
     }
 
     @Override
     public String toString() {
-        return "Alternativa{" + "id_alternativa=" + id_alternativa + ", nombre_alternativa=" + nombre_alternativa
-                + ", descripcion_alternativa=" + descripcion_alternativa + ", pros_alternativa=" + pros_alternativa
-                + ", contras_alternativas=" + contras_alternativas + ", costo_alternativa=" + costo_alternativa
-                + ", tiempo_de_implementacion=" + tiempo_de_implementacion + ", proyectos_idProyecto="
-                + proyectos_idProyecto + ", proyectos_usuarios_idUsuario=" + proyectos_usuarios_idUsuario + '}';
+        return "Alternativa{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", pros=" + pros + ", contras=" + contras + ", costo=" + costo + ", tiempoDeImplementacion=" + tiempoDeImplementacion + ", categoria=" + categoria + ", idProyecto=" + idProyecto + '}';
     }
 
 }

@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import backend.conexion.ConexionDB;
 import backend.consultas.ProyectoSQL;
 import backend.entidades.Proyecto;
@@ -31,7 +33,7 @@ public class ProyectoServicio extends ConexionDB implements OperacionesCRUD<Proy
             }
             return entidad;
         } catch (Exception e) {
-            System.out.println("Error al insertar proyecto: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al insertar proyecto: " + e.getMessage());
             return null;
         } finally {
             super.cerrarConexion();
@@ -49,7 +51,7 @@ public class ProyectoServicio extends ConexionDB implements OperacionesCRUD<Proy
             ps.executeUpdate();
             return entidad;
         } catch (Exception e) {
-            System.out.println("Error al actualizar proyecto: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al actualizar proyecto: " + e.getMessage());
             return null;
         } finally {
             super.cerrarConexion();
@@ -63,7 +65,7 @@ public class ProyectoServicio extends ConexionDB implements OperacionesCRUD<Proy
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Error al eliminar proyecto: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al eliminar proyecto: " + e.getMessage());
         } finally {
             super.cerrarConexion();
         }
@@ -81,7 +83,7 @@ public class ProyectoServicio extends ConexionDB implements OperacionesCRUD<Proy
             }
             return proyecto;
         } catch (Exception e) {
-            System.out.println("Error al buscar proyecto por id: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al buscar proyecto por id: " + e.getMessage());
             return null;
         } finally {
             super.cerrarConexion();
@@ -100,7 +102,7 @@ public class ProyectoServicio extends ConexionDB implements OperacionesCRUD<Proy
             }
             return proyectos;
         } catch (Exception e) {
-            System.out.println("Error al mostrar todos los proyectos: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al obtener todos los proyectos: " + e.getMessage());
             return null;
         } finally {
             super.cerrarConexion();
@@ -118,7 +120,7 @@ public class ProyectoServicio extends ConexionDB implements OperacionesCRUD<Proy
             }
             return proyectos;
         } catch (Exception e) {
-            System.out.println("Error al obtener proyectos por id de usuario: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al obtener proyectos por id de usuario: " + e.getMessage());
             return null;
         } finally {
             super.cerrarConexion();
